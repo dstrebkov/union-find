@@ -14,14 +14,19 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-file(ARCHIVE_EXTRACT INPUT "${CMAKE_CURRENT_LIST_DIR}/test-data/input.tar.gz" DESTINATION "${CMAKE_CURRENT_LIST_DIR}/test-data")
-file(ARCHIVE_EXTRACT INPUT "${CMAKE_CURRENT_LIST_DIR}/test-data/gold.tar.gz" DESTINATION "${CMAKE_CURRENT_LIST_DIR}/test-data")
+file(ARCHIVE_EXTRACT INPUT "${CMAKE_CURRENT_LIST_DIR}/test-data/test-data.tar.gz" DESTINATION "${CMAKE_CURRENT_LIST_DIR}/test-data")
 
-add_executable(union-find-tests src/union-find-test.cpp include/regression-inputs.h include/regression-golds.h)
+add_executable(union-find-tests src/union-find-test.cpp src/union-find-regression.cpp
+                                include/regression-inputs.h include/regression-golds.h)
 target_include_directories(union-find-tests PUBLIC "${CMAKE_SOURCE_DIR}")
 target_link_libraries(union-find-tests GTest::gtest union-find)
 
 target_compile_options(union-find-tests PRIVATE -g -O0 -fno-elide-constructors)
 
 include(GoogleTest)
-gtest_discover_tests(union-find-tests)
+
+set(REGRESSION_DATA_DIR "${PROJECT_SOURCE_DIR}/test-data")
+
+# Use "EXTRA_ARGS --regressionDataDir=" to provide path to directory with regression file pairs (input + gold)
+# Value of the argument should be double-quoted, i.e. "${REGRESSION_DATA_DIR}"
+gtest_discover_tests(union-find-tests EXTRA_ARGS --regressionDataDir="${REGRESSION_DATA_DIR}")
