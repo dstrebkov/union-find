@@ -1,5 +1,6 @@
 ##### User
 union-find/test/test-data/regression*
+include
 
 ##### Windows
 # Windows thumbnail cache files
