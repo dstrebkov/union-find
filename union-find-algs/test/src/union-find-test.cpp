@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include <union-find/include/quick-find.h>
+#include <union-find-algs/include/quick-find.h>
 
 namespace uf {
 

@@ -3,7 +3,7 @@
 #include <fstream>
 #include <filesystem>
 
-#include <union-find/include/quick-find.h>
+#include <union-find-algs/include/quick-find.h>
 #include "../include/regression-inputs.h"
 #include "../include/regression-golds.h"
 
