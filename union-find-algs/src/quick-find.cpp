@@ -23,7 +23,7 @@ int QuickFind::Count() {
 }
 
 int QuickFind::Find(uint32_t e) {
-    CheckBoundary(e);
+    UnionFind::CheckBoundary(ids_.size(), e);
     return ids_[e];
 }
 
