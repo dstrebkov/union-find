@@ -1,5 +1,1 @@
-#include "../include/union-find.h"
-
-namespace uf {
-
-}
+namespace uf {}

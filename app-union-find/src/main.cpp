@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include <include/union-find/quick-find.h>
+#include <include/union-find-algs/quick-find.h>
 
 int main(int argc, char** argv) {
     uf::QuickFind quick_find(3);

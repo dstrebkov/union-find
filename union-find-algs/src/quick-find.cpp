@@ -12,17 +12,17 @@ QuickFind::QuickFind(uint32_t n)
     std::iota(ids_.begin(), ids_.end(), 0);
 }
 
-bool QuickFind::AreConnected(uint32_t e1, uint32_t e2) {
+bool QuickFind::AreConnected(uint32_t e1, uint32_t e2) const {
     return Find(e1) == Find(e2);
 }
 
-int QuickFind::Count() {
+int QuickFind::Count() const {
     std::unordered_set<uint32_t> uniques;
     std::for_each(ids_.begin(), ids_.end(), [&](uint32_t e) { uniques.insert(e); });
     return uniques.size();
 }
 
-int QuickFind::Find(uint32_t e) {
+int QuickFind::Find(uint32_t e) const {
     UnionFind::CheckBoundary(ids_.size(), e);
     return ids_[e];
 }

@@ -8,11 +8,11 @@ namespace uf {
 
 class UnionFind {
 public:
-    virtual bool AreConnected(uint32_t e1, uint32_t e2) = 0;
+    virtual bool AreConnected(uint32_t e1, uint32_t e2) const = 0;
 
-    virtual int Count() = 0;
+    virtual int Count() const = 0;
 
-    virtual int Find(uint32_t e) = 0;
+    virtual int Find(uint32_t e) const = 0;
 
     virtual void Union(uint32_t e1, uint32_t e2) = 0;
 
@@ -20,7 +20,7 @@ public:
 
 protected:
     template <typename... Targs>
-    void CheckBoundary(uint32_t size, Targs... es) {
+    void CheckBoundary(uint32_t size, Targs... es) const {
         for (auto e : {es...}) {
             if (e < 0 || e >= size) {
                 throw std::out_of_range("Index is out of bounds");

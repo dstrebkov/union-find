@@ -16,8 +16,11 @@ FetchContent_MakeAvailable(googletest)
 
 file(ARCHIVE_EXTRACT INPUT "${CMAKE_CURRENT_LIST_DIR}/test-data/test-data.tar.gz" DESTINATION "${CMAKE_CURRENT_LIST_DIR}/test-data")
 
-add_executable(union-find-algs-tests src/union-find-test.cpp src/union-find-regression.cpp
-                                include/regression-inputs.h include/regression-golds.h)
+add_executable(union-find-algs-tests include/union-find-tester.h src/union-find-tester.cpp
+                                     include/regression-inputs.h include/regression-golds.h
+                                     src/union-find-test.cpp src/union-find-regression.cpp
+)
+
 target_include_directories(union-find-algs-tests PUBLIC "${CMAKE_SOURCE_DIR}")
 target_link_libraries(union-find-algs-tests GTest::gtest union-find-algs)
 

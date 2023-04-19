@@ -12,16 +12,16 @@ class QuickUnion : public UnionFind
 public:
     QuickUnion(uint32_t n);
 
-    virtual bool AreConnected(uint32_t e1, uint32_t e2) override;
+    virtual bool AreConnected(uint32_t e1, uint32_t e2) const override;
 
-    virtual int Count() override;
+    virtual int Count() const override;
 
-    virtual int Find(uint32_t e) override;
+    virtual int Find(uint32_t e) const override;
 
     virtual void Union(uint32_t e1, uint32_t e2) override;
 
 private:
-    uint32_t getRoot(uint32_t e);
+    uint32_t getRoot(uint32_t e) const;
 
     std::vector<uint32_t> root_ids_; // roots of each of the nodes
 };

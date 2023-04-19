@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 3.14.0)
 
 project(union-find-algs LANGUAGES CXX)
 
-add_library(union-find-algs STATIC include/union-find.h src/union-find.cpp
-                                   include/quick-find.h src/quick-find.cpp
+add_library(union-find-algs STATIC include/union-find.h  src/union-find.cpp
+                                   include/quick-find.h  src/quick-find.cpp
                                    include/quick-union.h src/quick-union.cpp)
 
 target_sources(union-find-algs PRIVATE src/union-find.cpp src/quick-find.cpp src/quick-union.cpp)
