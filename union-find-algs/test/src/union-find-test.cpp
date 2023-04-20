@@ -50,24 +50,30 @@ TEST(UnionFind, Count) {
     std::for_each(r.begin(), r.end(), [&](const auto& e) {ASSERT_EQ(1, e);} );
 }
 
-//TEST(QuickFind, Find) {
-//    uf::QuickFind quick_find(5);
-//    ASSERT_EQ(0, quick_find.Find(0));
-//    quick_find.Union(0, 1);
-//    ASSERT_EQ(1, quick_find.Find(0));
-//    quick_find.Union(4, 0);
-//    ASSERT_EQ(1, quick_find.Find(0));
-//    ASSERT_EQ(1, quick_find.Find(4));
-//}
+TEST(UnionFind, Find) {
+    UnionFindTester uf_tester{5};
+    auto r = uf_tester.Find(0);
+    std::for_each(r.begin(), r.end(), [&](const auto& e) {ASSERT_EQ(0, e);} );
 
-//TEST(QuickFind, OutOfBoundsAccess_OneArgument) {
-//    uf::QuickFind quick_find(5);
-//    ASSERT_THROW(quick_find.Find(88), std::out_of_range);
-//}
+    uf_tester.Union(0, 1);
+    r = uf_tester.Find(0);
+    std::for_each(r.begin(), r.end(), [&](const auto& e) {ASSERT_EQ(1, e);} );
 
-//TEST(QuickFind, OutOfBoundsAccess_TwoArguments) {
-//    uf::QuickFind quick_find(5);
-//    ASSERT_THROW(quick_find.Union(0, 99), std::out_of_range);
-//}
+    uf_tester.Union(4, 0);
+    r = uf_tester.Find(0);
+    std::for_each(r.begin(), r.end(), [&](const auto& e) {ASSERT_EQ(1, e);} );
+    r = uf_tester.Find(4);
+    std::for_each(r.begin(), r.end(), [&](const auto& e) {ASSERT_EQ(1, e);} );
+}
+
+TEST(UnionFind, OutOfBoundsAccess_OneArgument) {
+    UnionFindTester uf_tester{5};
+    ASSERT_THROW(uf_tester.Find(88), std::out_of_range);
+}
+
+TEST(UnionFind, OutOfBoundsAccess_TwoArguments) {
+    UnionFindTester uf_tester{5};
+    ASSERT_THROW(uf_tester.Union(0, 99), std::out_of_range);
+}
 
 } // namespace uf
