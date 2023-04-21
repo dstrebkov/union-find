@@ -34,7 +34,7 @@ void QuickUnion::Union(uint32_t e1, uint32_t e2) {
 
 uint32_t QuickUnion::GetRoot(uint32_t e) const {
     UnionFind::CheckBoundary(root_ids_.size(), e);
-    for (; root_ids_[e] != e; e = root_ids_[e]);
+    //for (; root_ids_[e] != e; e = root_ids_[e]);
     return e;
 }
 
