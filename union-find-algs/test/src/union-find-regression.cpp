@@ -3,7 +3,7 @@
 #include <fstream>
 #include <filesystem>
 
-#include <union-find-algs/include/quick-find.h>
+#include "../include/union-find-tester.h"
 #include "../include/regression-inputs.h"
 #include "../include/regression-golds.h"
 
@@ -16,7 +16,7 @@ static const char* kRegressionTestsFlag = "--regressionDataDir";
 typedef std::vector<std::filesystem::path> FilePaths;
 
 struct RegressionResult {
-    std::string curr;
+    std::array<std::string, UnionFindTester::N> currs;
     std::string gold;
 };
 
@@ -24,18 +24,31 @@ RegressionResult Process(const std::string& input, const std::string& gold) {
     std::istringstream isstream{input};
     uint32_t n;
     isstream >> n;
-    uf::QuickFind quick_find(n);
+    UnionFindTester uf_tester{n};
 
-    std::ostringstream osstream;
+    std::array<std::ostringstream, UnionFindTester::N> osstreams;
     for (uint32_t p = 0, q = 0; isstream >> p >> q;) {
-        if (quick_find.Find(p) == quick_find.Find(q)) continue;
-        quick_find.Union(p, q);
-        osstream << p << ' ' << q << std::endl;
-    }
-    osstream << quick_find.Count() << " components" << std::endl;
+        if (uf_tester.Find(p) == uf_tester.Find(q)) {
+            continue;
+        }
 
-    auto curr{osstream.str()};
-    return {curr, gold};
+        uf_tester.Union(p, q);
+
+        std::for_each(osstreams.begin(), osstreams.end(), [=](auto& oss) { oss << p << ' ' << q << std::endl; });
+    }
+
+    auto counts = uf_tester.Count();
+    for (auto i = 0; i < UnionFindTester::N; ++i) {
+        osstreams[i] << counts[i] << " components" << std::endl;
+    }
+
+    RegressionResult result;
+    for (auto i = 0; i < UnionFindTester::N; ++i) {
+        result.currs[i] = osstreams[i].str();
+    }
+
+    result.gold = gold;
+    return result;
 }
 
 FilePaths collectGoldFilePaths() {
@@ -62,7 +75,9 @@ TEST(UnionFind, BaseRegressionTests) {
         auto gold{UF_REGRESSION_GOLDS[i]};
 
         auto result = Process(input, gold);
-        ASSERT_EQ(result.curr, result.gold);
+        std::for_each(result.currs.begin(), result.currs.end(), [&](const auto& curr) {
+            ASSERT_EQ(curr, result.gold);
+        });
     }
 }
 
@@ -94,7 +109,9 @@ TEST(UnionFind, ExtendedRegressionTests) {
         std::string input(std::istreambuf_iterator<char>{input_fs}, {});
 
         auto result = Process(input, gold);
-        ASSERT_EQ(result.curr, result.gold);
+        std::for_each(result.currs.begin(), result.currs.end(), [&](const auto& curr) {
+            ASSERT_EQ(curr, result.gold);
+        });
     }
 }
 

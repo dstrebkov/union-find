@@ -12,9 +12,9 @@
 namespace uf {
 
 class UnionFindTester {
+public:
     static const uint8_t N = 2;
 
-public:
     UnionFindTester(uint32_t n);
 
     std::array<bool, N> AreConnected(uint32_t e1, uint32_t e2) const;
