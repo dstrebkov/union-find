@@ -1,4 +1,5 @@
 #include "../include/union-find-tester.h"
+#include "union-find-algs/include/weighted-quick-union.h"
 
 #include <algorithm>
 #include <set>
@@ -9,7 +10,8 @@ namespace uf {
 UnionFindTester::UnionFindTester(uint32_t n)
     : union_find_impls_{
         std::unique_ptr<UnionFind>(new QuickFind(n)),
-        std::unique_ptr<UnionFind>(new QuickUnion(n))
+        std::unique_ptr<UnionFind>(new QuickUnion(n)),
+        std::unique_ptr<UnionFind>(new WeightedQuickUnion(n))
     }
 {
 }
