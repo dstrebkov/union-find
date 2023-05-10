@@ -8,12 +8,13 @@
 
 #include <union-find-algs/include/quick-find.h>
 #include <union-find-algs/include/quick-union.h>
+#include <union-find-algs/include/weighted-quick-union.h>
 
 namespace uf {
 
 class UnionFindTester {
 public:
-    static const uint8_t N = 2;
+    static const uint8_t N = 3;
 
     UnionFindTester(uint32_t n);
 

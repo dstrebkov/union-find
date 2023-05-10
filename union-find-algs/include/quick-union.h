@@ -20,10 +20,10 @@ public:
 
     virtual void Union(uint32_t e1, uint32_t e2) override;
 
-private:
-    uint32_t GetRoot(uint32_t e) const;
+protected:
+    virtual uint32_t GetRoot(uint32_t e) const;
 
-    std::vector<uint32_t> root_ids_; // roots of each of the nodes
+    mutable std::vector<uint32_t> root_ids_; // roots of each of the nodes
 };
 
 } // namespace uf
