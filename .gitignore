@@ -1,6 +1,7 @@
 ##### User
-union-find/test/test-data/regression*
 /include
+union-find-algs/test/test-data/*.txt
+union-find-algs/test/test-data/*.gold
 
 ##### Windows
 # Windows thumbnail cache files
