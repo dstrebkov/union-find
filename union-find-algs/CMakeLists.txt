@@ -16,8 +16,8 @@ set(PUBLIC_HEADER ${CMAKE_CURRENT_SOURCE_DIR}/include/union-find.h
                   ${CMAKE_CURRENT_SOURCE_DIR}/include/quick-union.h
                   ${CMAKE_CURRENT_SOURCE_DIR}/include/weighted-quick-union.h)
 
-set(LIB_PATH $<TARGET_FILE:factorial_doctest_fakeit>)
-set(LIB_NAME $<TARGET_FILE_NAME:factorial_doctest_fakeit>)
+set(LIB_PATH $<TARGET_FILE:union-find-algs>)
+set(LIB_NAME $<TARGET_FILE_NAME:union-find-algs>)
 
 add_custom_command(TARGET union-find-algs
     PRE_BUILD
