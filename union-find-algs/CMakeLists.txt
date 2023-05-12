@@ -16,8 +16,17 @@ set(PUBLIC_HEADER ${CMAKE_CURRENT_SOURCE_DIR}/include/union-find.h
                   ${CMAKE_CURRENT_SOURCE_DIR}/include/quick-union.h
                   ${CMAKE_CURRENT_SOURCE_DIR}/include/weighted-quick-union.h)
 
-add_custom_target(make-output-includes-dir ALL COMMAND ${CMAKE_COMMAND} -E make_directory ${OUTPUT_INCLUDES_DIR})
-add_custom_target(copy-includes ALL COMMAND ${CMAKE_COMMAND} -E copy ${PUBLIC_HEADER} ${OUTPUT_INCLUDES_DIR})
-add_custom_target(copy-lib ALL COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:union-find-algs> ${CMAKE_SOURCE_DIR}/libs)
+set(LIB_PATH $<TARGET_FILE:factorial_doctest_fakeit>)
+set(LIB_NAME $<TARGET_FILE_NAME:factorial_doctest_fakeit>)
+
+add_custom_command(TARGET union-find-algs
+    PRE_BUILD
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${OUTPUT_INCLUDES_DIR}
+    COMMAND ${CMAKE_COMMAND} -E copy ${PUBLIC_HEADER} ${OUTPUT_INCLUDES_DIR}
+)
+add_custom_command(TARGET union-find-algs
+    POST_BUILD 
+    COMMAND ${CMAKE_COMMAND} -E copy ${LIB_PATH} ${CMAKE_SOURCE_DIR}/libs/${LIB_NAME}
+)
 
 add_subdirectory(test)
