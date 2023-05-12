@@ -35,3 +35,17 @@ jobs:
       # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
       run: ctest -C ${{env.BUILD_TYPE}}
 
+    - name: Test (Pipeline)
+      # working-directory: ${{github.workspace}}/build
+      # Execute tests defined by the CMake configuration.
+      # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
+      # run: ctest -C ${{env.BUILD_TYPE}}
+      working-directory: ${{github.workspace}}
+      run: ctest -S cmake/Pipeline.cmake -V
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        directory: ${{github.workspace}}/build-test
+        files: ${{github.workspace}}/build-test/coverage/coverage.xml
+        verbose: true
