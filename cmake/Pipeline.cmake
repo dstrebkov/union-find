@@ -8,7 +8,7 @@ set(CTEST_CONFIGURATION_TYPE Debug)
 
 set(CTEST_COVERAGE_COMMAND gcov)
 set(CTEST_COVERAGE_EXTRA_FLAGS "--demangled-names")
-set(CTEST_CUSTOM_COVERAGE_EXCLUDE "_deps;/test/")
+set(CTEST_CUSTOM_COVERAGE_EXCLUDE "_deps;/test/;[^/]app[-_][-_a-z0-9]+/")
 
 ctest_empty_binary_directory(${CTEST_BINARY_DIRECTORY})
 
@@ -21,7 +21,7 @@ ctest_coverage()
 find_package(Python3 COMPONENTS Interpreter REQUIRED)
 
 set(VENV_PATH "${CTEST_BINARY_DIRECTORY}/py_env")
-set(GCOVR_EXCLUDE ".*/\(_deps|test|CMakeFiles|app-union-find)/")
+set(GCOVR_EXCLUDE "(.*/_deps/.*|.*/test/.*|.*/CMakeFiles/.*|^app[-_][-_a-z0-9]+/.*)")
 set(GCOVR_XML_FILE "${CTEST_BINARY_DIRECTORY}/coverage/coverage.xml")
 set(GCOVR_HTML_FILE "${CTEST_BINARY_DIRECTORY}/coverage/coverage.html")
 
