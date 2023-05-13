@@ -21,7 +21,7 @@ ctest_coverage()
 find_package(Python3 COMPONENTS Interpreter REQUIRED)
 
 set(VENV_PATH "${CTEST_BINARY_DIRECTORY}/py_env")
-set(GCOVR_EXCLUDE ".*/\(_deps|test|CMakeFiles)/")
+set(GCOVR_EXCLUDE ".*/\(_deps|test|CMakeFiles|app-union-find)/")
 set(GCOVR_XML_FILE "${CTEST_BINARY_DIRECTORY}/coverage/coverage.xml")
 set(GCOVR_HTML_FILE "${CTEST_BINARY_DIRECTORY}/coverage/coverage.html")
 
