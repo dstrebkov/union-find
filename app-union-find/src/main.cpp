@@ -1,7 +1,5 @@
 #include <chrono>
-#include <fstream>
 #include <iostream>
-#include <sstream>
 
 #include <include/union-find-algs/quick-find.h>
 #include <include/union-find-algs/quick-union.h>
