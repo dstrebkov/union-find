@@ -11,7 +11,7 @@ Data structure for solving [Dynamic Connectivity](https://en.wikipedia.org/wiki/
 
 Could be used to give quick answers to queries of the form "_Is there a path between X and Y?_" (i.e. "_Do vertices X and Y belong to the same connected component?_").
 
-Implementation include the following [Quick-Find and Quick-Union algorithms](https://algs4.cs.princeton.edu/15uf/):
+Implementation includes the following [Quick-Find and Quick-Union algorithms](https://algs4.cs.princeton.edu/15uf/):
 
 | Algorithm            | `Union()` time complexity  (worst case) | `Find()`  time complexity  (worst case) | Memory complexity |
 |----------------------|-----------------------------------------|-----------------------------------------|-------------------|
@@ -32,8 +32,8 @@ CTest-based pipeline starting script `cmake/Pipeline.cmake` uses *GCC*, *gcov*, 
 
 | Problem of 1M sites and ...        | ... 20K `Union()` / `Find()` pairs | ... 700K `Union()` / `Find()` pairs | ... 2M `Union()` / `Find()` pairs |
 |------------------------------------|------------------------------------|-------------------------------------|-----------------------------------|
-| Quick-Find           | `21.1539` sec.                     | -                                   | -                                 |
-| Quick-Union          | `0.012467` sec.                    | `35.1199` sec.                      | -                                 |
+| Quick-Find           | `21.1539` sec.                     | —                                   | —                                 |
+| Quick-Union          | `0.012467` sec.                    | `35.1199` sec.                      | —                                 |
 | Weighted Quick-Union | `0.016003` sec.                    | `0.468004` sec.                     | `1.20773` sec.                    |
 
 ## References
